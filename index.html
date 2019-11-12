@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Weather </title>
+        
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+         </head>
+         
+    <body class = "text-center" style="background-color:#E6E6FA">
+    
+    <h1 class= "jumbotron"> Sign Up </h1>
+    
+    <form id="signupForm" method="GET">
+        City:           <input type="text"    name="city" id="city"><br>
+        Weather:        <span id="weather"></span><br>
+
+        
+    
+    <input type="submit"  value="Weather up!">
+    </form>
+
+    <script>
+
+        var nameAvailable = false;
+        
+        //Displaying City from API
+        $("#city").on("change",function(){
+            
+            var city = $("#city").val();
+
+            $.ajax({
+              type: "GET",
+                 url: "api.openweathermap.org/data/2.5/weather?q=" + city +"&units=imperial" + 
+                 "&appid=59894bd11bd3680a9af5250c8471fc17",
+            dataType: "json",
+
+           
+            success: function(result) {
+                
+                //alert(result.coord.lon);
+                    $("#weather").html(result.main.temp);
+//                  $("#lon").html(result.lon);
+                
+                }
+            
+            });//ajax
+        });//zip
+        
+
+        
+
+    
+
+    
+    // $("#signupForm").on("submit", function(event){
+        
+    //     alrt("Submitting form...");
+    //     event.preventDefault();
+    // });
+    
+
+    
+    
+    
+    </script>
+    
+    </body>
+
+</html>
