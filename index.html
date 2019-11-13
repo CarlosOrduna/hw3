@@ -21,17 +21,16 @@
         Weather Description:    <span id="weatherdes"></span><br>
         Wind:    <span id="wind"></span><br>
         Pressure:    <span id="pressure"></span><br>
+        
     </form>
 
     <script>
-
-        var nameAvailable = false;
         
         //Displaying City from API
         $("#city").on("change",function(){
             
             var city = $("#city").val();
-
+            if(city != "") {
             $.ajax({
               method: "GET",
                  url: "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&units=imperial" + 
@@ -51,7 +50,10 @@
                 }
             
             });//ajax
-        });//zip
+        } else {
+            $("#temp").html("field can not be empty");
+        }
+    });//zip
         
 
         
